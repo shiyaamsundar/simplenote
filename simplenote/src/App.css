@@ -1,0 +1,414 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar {
+  width: 445px;
+
+  min-height: 670px;
+  max-height: auto;
+
+  position: absolute;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-right: 1px solid rgb(168, 168, 168);
+}
+
+.main {
+  max-width: auto;
+
+  /* background-color: brown; */
+  min-height: 670px;
+  max-height: auto;
+  position: relative;
+  margin-left: 500px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.navbar {
+  height: 50px;
+
+  max-width: auto;
+  border-top: 0.5px solid rgb(168, 168, 168);
+  border-bottom: 0.5px solid rgb(168, 168, 168);
+  border-radius: 2px;
+}
+
+.nav-row {
+  display: flex;
+}
+
+.line {
+  width: 1px;
+  margin-left: 20px;
+  background-color: grey;
+  height: 50px;
+}
+.nav-notes {
+  margin-left: 150px;
+  margin-right: 80px;
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 500;
+}
+.nav-icon {
+  margin-top: 12px;
+  margin-left: 10px;
+}
+
+.eye:hover,
+.eye-1:hover,
+.info:hover,
+.check:hover,
+.more:hover,
+.post:hover,
+.arrow-btn:hover,
+.flip:hover {
+  cursor: grab;
+}
+
+/* .tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  position: absolute;
+  opacity: 0;
+} */
+
+.eye,
+.info,
+.more,
+.check {
+  position: relative;
+  display: inline-block;
+  padding-top: 5px;
+}
+
+.eye .tooltip,
+.info .tooltip,
+.more .tooltip,
+.check .tooltip {
+  padding-top: 15px;
+  visibility: hidden;
+  width: 80px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  left: 25%;
+  margin-left: -50px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.eye .tooltip::after,
+.info .tooltip::after,
+.more .tooltip::after,
+.check .tooltip::after {
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(221, 207, 207) transparent transparent transparent;
+}
+
+.eye:hover .tooltip,
+.more:hover .tooltip,
+.info:hover .tooltip,
+.check:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.eye,
+.info,
+.more,
+.check {
+  display: inline;
+}
+.emt {
+  width: 100px;
+  height: 10px;
+  padding-right: 750px;
+  display: inline;
+}
+
+.post {
+  padding-left: 50px;
+}
+
+.nav-right {
+  margin-left: 50px;
+}
+
+.info,
+.check,
+.more {
+  padding-left: 10px;
+}
+
+.search {
+  width: 430px;
+  margin-left: 10px;
+  height: 40px;
+  border-bottom: 0.5px solid rgb(206, 198, 198);
+}
+
+.side-icon {
+  margin-top: 7px;
+  margin-left: 5px;
+  position: absolute;
+}
+
+.search-p {
+  margin-bottom: 0px;
+  margin-left: 50px;
+  font-size: 20px;
+  margin-top: 8px;
+  width: 350px;
+  font-weight: 300;
+  position: absolute;
+  border: none;
+  outline: none;
+}
+.card-p {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.bgbg {
+  background-color: yellow;
+}
+
+.card {
+  width: 380px;
+  margin-left: 28px;
+  height: 80px;
+  position: relative;
+  border-bottom: 1px solid grey;
+}
+.notes {
+  margin-top: 8px;
+  background-color: white;
+  box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.star {
+  margin-top: 7px;
+  margin-left: 1px;
+  margin-right: 5px;
+  position: absolute;
+  opacity: 0;
+}
+
+.star-fill {
+  margin-top: 7px;
+  margin-left: 1px;
+  margin-right: 5px;
+  position: absolute;
+}
+.notes:hover .star {
+  opacity: 1;
+}
+
+.menu {
+  padding-left: 10px;
+  padding-top: 30px;
+  display: flexbox;
+  border-radius: 3px;
+  width: 220px;
+  min-height: 600px;
+  max-height: max-content;
+  box-shadow: 5px 4px 8px 5px rgba(20, 20, 20, 0.2);
+  transition: 0.3s;
+  z-index: 1;
+  background-color: rgb(255, 255, 255);
+  margin-top: 50px;
+  position: absolute;
+  transform: 0.5;
+  animation: ease-out;
+  animation-duration: 5sec;
+}
+
+.sidebar .menu {
+  opacity: 0;
+}
+
+.menu-txt {
+  font-size: 20px;
+  margin-right: 30px;
+  padding-left: 30px;
+}
+
+.menu-icon {
+  padding-left: 20px;
+}
+
+.menu-hr {
+  width: 200px;
+  padding-bottom: 30px;
+  border-left: none;
+}
+
+.trash,
+.settings,
+.notes {
+  padding-left: 25px;
+}
+
+.trash-icon {
+  padding-left: 50px;
+}
+
+.settings-icon {
+  padding-left: 30px;
+}
+
+.tags-edit {
+  padding-left: 105px;
+  color: blue;
+  font-size: 20px;
+  font-weight: 500;
+}
+.tags-edit:hover {
+  cursor: grab;
+}
+
+.m-tags-txt {
+  font-size: 20px;
+  font-weight: 300;
+  padding-left: 10px;
+  border-bottom: 1px solid rgb(211, 197, 197);
+  margin-bottom: 25px;
+  padding-bottom: 5px;
+}
+
+.arrow:hover {
+  cursor: grab;
+}
+
+.arrow-btn {
+  border: none;
+}
+
+.close {
+  cursor: grab;
+}
+
+.body {
+  display: block;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  width: 90%;
+  height: 250px;
+  padding: 10px;
+  border: none;
+  border-style: none;
+  border-color: Transparent;
+  overflow: auto;
+}
+
+.spc {
+  padding-top: 50px;
+}
+
+.markdown-preview {
+  padding: 0 25px 25px 25px;
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+.mm {
+  height: 100px;
+  margin-top: 20px;
+}
+
+.btn {
+  margin-bottom: 15px;
+  border: none;
+  background-color: #008cba;
+  color: white;
+  padding: 15px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  margin-left: 750px;
+  cursor: pointer;
+}
+
+.div-text {
+  width: 350px;
+  margin-left: 800px;
+  margin-top: 100px;
+  box-sizing: border-box;
+  box-shadow: 5px 4px 8px 5px rgba(1, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  height: 250px;
+
+  z-index: 1;
+  position: relative;
+}
+
+.info-heading {
+  padding-right: 50px;
+}
+
+.close {
+  size: 50px;
+  padding-left: 150px;
+}
+
+.txt-hr {
+  margin-top: 15px;
+}
+
+.lastsynced {
+  padding-left: 30px;
+}
+
+.window {
+  margin-top: 20px;
+}
+
+.modified,
+.created,
+.char,
+.words {
+  margin-top: 15px;
+}
+
+.modified span {
+  margin-left: 50px;
+}
+
+.created span {
+  margin-left: 55px;
+}
+
+.char span,
+.words span {
+  margin-left: 50px;
+}
+
+.words {
+  padding-right: 80px;
+}
+
+.words span {
+  padding-right: 50px;
+}
+
+.char {
+  padding-right: 50px;
+}
