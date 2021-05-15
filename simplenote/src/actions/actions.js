@@ -1,5 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
+
+const url="http://localhost:5000/api/"
 
 export const preview=()=>{
     return {
@@ -39,10 +41,5 @@ export const flip=()=>{
     }
 }
 
-export const addnote=()=>{
-    return {
-        type:'ADDNOTE'
-    }
-}
 
 

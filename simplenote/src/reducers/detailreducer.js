@@ -19,9 +19,34 @@ const notesReducer=(state=initialState,action)=>{
                 ...state,
                 isLoading:true
             }
+
+        case "SPECIFIC_NOTE":
+            return {
+                ...state,
+                note:action.payload.note.data
+            }
+
+        case "ADD_NOTE":
+            return{
+                ...state,
+                
+            }   
+        case "ON_SAVE":
+            return {
+                ...state,
+                note:action.payload.note.data
+            }  
+            case "FLIP_PINNED":
+                return {
+                    ...state,
+                    note:action.payload.note.data
+                }  
+           
+
             default:
                 return state;
     }
+            
 }
 
 export default notesReducer;

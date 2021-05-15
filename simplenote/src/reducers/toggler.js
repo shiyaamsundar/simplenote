@@ -59,12 +59,6 @@ const toggleReducer=(state={       preview:false,
                      ...state,
                      star:!state.star
                  }
-            case 'ADDNOTE':
-                return  {
-                     ...state,
-                     addnote:state.addnote+1
-                 }
-
             default:
                 return state;
     }

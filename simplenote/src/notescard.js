@@ -1,26 +1,26 @@
 import React from 'react'
 import GradeOutlinedIcon from '@material-ui/icons/GradeOutlined';
 import StarIcon from '@material-ui/icons/Star';
+import { loadsepcificnote,flip_pinned } from './actions/detailsaction';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const Notescard = ({data}) => {
 
+    const dispatch=useDispatch()
 
-    // function getFirstLine(text) {
-    //     var index = text.indexOf("\n");
-    //     if (index === -1) index = undefined;
-    //     return text.substring(0, index);
-    // }
+    let firstline=""
+    let secondline=""
 
-    // let f=getFirstLine(data.data)
-    // console.log(f,"hello");
+    if(data.data)
+    {
+     firstline=(data.data).substring(0,30)
+     secondline=(data.data).substring(30,100)
+
+    }
 
 
 
-    console.log(data.pinned);
-
-    const firstline=(data.data).substring(0,30)
-    const secondline=(data.data).substring(30,100)
     const modified=(data.modified).substring(0,19)
     const m=new Date(modified)
     // console.log(,"dddd");
@@ -29,27 +29,22 @@ const Notescard = ({data}) => {
     const year=m.getFullYear()
     const hr=m.getHours()
     const mins=m.getMinutes()
-    console.log(day,month,year,hr,mins,m);
-
-    const date=new Date(year,month,day,hr,mins)
-    console.log(date,"dateeee");
 
 
-    function convert(str) {
-        var date = new Date(str),
-          mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-          day = ("0" + date.getDate()).slice(-2);
-        return [date.getFullYear(), mnth, day].join("-");
-      }
 
-    const aabb=convert(data.modified)
-    console.log(aabb,"adasdasdasdasfdasdfkhb");
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    
+    const date=(new Date(year,month,day,hr,mins)).toLocaleString()
+
+    const ad=date.substring(10,25)
+    
 
     const setactive=(id)=>{
         window.id=id
         console.log(window.id);
-
-    
+        dispatch(loadsepcificnote(window.id))
+        
 
 
     }
@@ -67,19 +62,20 @@ const Notescard = ({data}) => {
     //     console.log(h.split('/n')[]);
     
     return (
-        <div className="notes" onClick={()=>setactive(data._id)} >
+        <div className={`notes ${window.id===data._id&&"active"}`} onClick={()=>setactive(data._id)}  >
              {!data.pinned?(
-                   <GradeOutlinedIcon className="star" onClick={()=>console.log("star-cli")}/> 
+                   <GradeOutlinedIcon className="star" onClick={()=>dispatch(flip_pinned(window.id,data.pinned))}/> 
            
             ):(
-                <StarIcon className="star-fill" onClick={()=>console.log("star-cli")}/>
+                <StarIcon className="star-fill" onClick={()=>dispatch(flip_pinned(window.id,data.pinned))}/>
             )} 
            
             <div className="card">
             <h3 className="card-head">{firstline}</h3>
             <br/>
             <p className="card-p">{secondline}</p>
-            <small className="note-meta ">Last Modify [date]:-  {}</small>
+            <small className="note-meta ">Last Modify [date]:-   {months[month]} , {year},  {day}    ,{ad}
+            </small>
             </div>
             
             

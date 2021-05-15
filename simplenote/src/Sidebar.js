@@ -18,22 +18,18 @@ const Sidebar = () => {
 
     const allnotes=useSelector(state=>state.notes)
 
-
-
-
-    let rows=[];
-    let i=0
-    for(i=0;i<toggle.addnote;i++)
-    {
-        rows.push(i)
-    }
-
+    
+    
     
 
     useEffect(()=>{
         dispatch(loadallnotes())
     },[])
 
+
+    const sortedNotes=allnotes.allnotes.sort((a,b)=>b.modified-a.modified)
+
+    console.log(sortedNotes,"sorted");
 
 
     return (

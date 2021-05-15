@@ -1,4 +1,4 @@
-import React, { useState }  from 'react'
+import React, { useState ,useEffect}  from 'react'
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -10,8 +10,9 @@ import FlipOutlinedIcon from '@material-ui/icons/FlipOutlined';
 import Menu from './Menu';
 import Sidebar from './Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
-import { preview,arrow,flip,more,check,info,addnote } from './actions/actions';
+import { preview,arrow,flip,more,check,info} from './actions/actions';
 import { PermDeviceInformationRounded } from '@material-ui/icons';
+import { addnote, loadallnotes } from './actions/detailsaction';
 
 
 
@@ -19,21 +20,105 @@ const Navbar = () => {
 
     const toggle=useSelector(state=>state.toggle)
     const dispatch=useDispatch()
+    let notes=useSelector(state=>state.notes.note)
 
-    console.log(toggle,"toggle");
+    const allnotes=useSelector(state=>state.notes)
+    console.log(allnotes.allnotes.length,"len-allnotes");
+
+    function countWords(str) {
+        if(window.id && str)
+        {
+        str = str.replace(/(^\s*)|(\s*$)/gi,"");
+        str = str.replace(/[ ]{2,}/gi," ");
+        str = str.replace(/\n /,"\n");
+        return str.split(' ').length;
+        }
+        else{
+            return 0
+        }
+     }
+
+    useEffect(()=>{
+        if(window.id){
+            setvalue({...value,data:notes})
+
+            console.log(value.data.modified,"useeff");
+        }
+        loadallnotes()
+
+    },[notes,window.id])
+
+
+
+
 
 
 
     const [value,setvalue]=useState({
-        preview:false,
-        info:false,
-        more:false,
-        check:false,
-        flip:false,
-        arrow:false,
+       
+        data:""
         
 
     })
+    const {data}=value
+
+    // const firstline=(value.data.modified).substring(0,30)
+    // const secondline=(value.data.modified).substring(30,100)
+    // const modified=(value.data.modified).substring(0,19)
+    // const m=new Date(modified)
+    // const day=m.getDate()
+    // const month=m.getMonth()
+    // const year=m.getFullYear()
+    // const hr=m.getHours()
+    // const mins=m.getMinutes()
+
+
+
+
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    
+  
+    const modified=(value.data.modified)
+    const m=new Date(modified)
+    const day=m.getDate()
+    const month=m.getMonth()
+    const year=m.getFullYear()
+    const hr=m.getHours()
+    const mins=m.getMinutes()
+
+    let words=0
+    let length=0
+      const md_date=(new Date(year,month,day,hr,mins)).toLocaleString().substring(10,25)
+
+      if(window.id && value.data.data)
+      {
+       words=countWords(value.data.data)
+       length=value.data.data.length
+      console.log(words,length);
+      }
+
+
+
+
+
+    const created=(value.data.modified)
+    const c=new Date(modified)
+    const c_day=c.getDate()
+    const c_month=c.getMonth()
+    const c_year=c.getFullYear()
+    const c_hr=c.getHours()
+    const c_mins=c.getMinutes()
+
+    const cd_date=(new Date(c_year,c_month,c_day,c_hr,c_mins)).toLocaleString().substring(10,25)
+    
+
+
+
+
+
+
+
 
 
 
@@ -131,11 +216,16 @@ const flipvalues=(d)=>{
                 <i class="fa fa-window-close close" aria-hidden="true" onClick={()=>dispatch(info())}/>
                 <hr className="txt-hr"/>
                 <div className="window">
-                <p>Last synced <span className="lastsynced">May 13, 2021, 11:28 AM</span></p>
-                <p className="modified"> Modified<span className="modified">May 13, 2021, 11:27 AM</span></p>
-                <p className="created"> Created<span className="created">May 11, 2021, 9:15 AM</span></p>
-                <p className="words"> Words<span className="words">5</span></p>
-                <p className="char"> Characters<span className="char">109</span></p>
+                <p className="modified"> Modified<span className="modified">
+
+                {months[month]} , {year},  {day}    ,{md_date}
+                
+                </span></p>
+                <p className="created"> Created<span className="created">
+                {months[c_month]} , {c_year},  {c_day}    ,{cd_date}
+                    </span></p>
+                <p className="words"> Words<span className="words">{words}</span></p>
+                <p className="char"> Characters<span className="char">{length}</span></p>
                 </div>
             
                 </div>
