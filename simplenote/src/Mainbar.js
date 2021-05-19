@@ -48,20 +48,7 @@ const Mainbar = () => {
     }
 
 
-        const removerSkills=(i)=>{
 
-            console.log(i);
-
-
-        const v=value.tags.splice(i,1) 
-        console.log(v);
-        setvalue({...value,tags:v})
-
-        }
-
-        const addSkill=e=>{
-            console.log(e.target.value);
-        }
 
     return (
         <div className="main">
@@ -86,23 +73,7 @@ const Mainbar = () => {
         
             </div>)}
 
-            <h2> Add Your Skill </h2>
-                <div className="skill">
-                    <ul>
-                        { value.tags.map((t, i) => {
-                            return (
-                                <li key={i}> {t} <button onClick={() => removerSkills(i)}>+</button> </li>
-                            )
-                        }) }
-                        <li className="input-skill">
-                            <input type="text" size="4" onKeyDown={addSkill}  ref={}/>
-                        </li>
-                    </ul>
-                </div>
-
            
-
-            
     
 
 
