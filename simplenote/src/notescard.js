@@ -156,11 +156,7 @@ const mapDispatchToprops=dispatch=>{
     return {
         flip_toggle:(id,data)=>dispatch(flip_pinned(id,data)),
         load_note:(id)=>dispatch(loadsepcificnote(id))
-    }
-
-
-
-    
+    }  
 
 }
 

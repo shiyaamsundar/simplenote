@@ -10,15 +10,16 @@ import Sidebar from './Sidebar'
 function App(){
 
   const t=useSelector(state=>state.toggler)
+  const allnotes=useSelector(state=>state.allnotes)
 
   return (
     <div className="App">
-      <Navbar/>
+      <Navbar data={allnotes}/>
       <div className="">
       {/* <Menu className="mm"/> */}
 <Sidebar className="sd"/>
       
-      <Mainbar/>
+      <Mainbar />
       </div>
     </div>
   )
