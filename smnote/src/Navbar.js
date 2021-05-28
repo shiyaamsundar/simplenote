@@ -159,7 +159,7 @@ class Navbar extends Component {
               fontSize="medium"
               onClick={this.props.flip}
             />
-            <div className="emt"></div>
+            <div className="empty_spacing_nav"></div>
             {this.props.toggler.preview ? (
               <div className="eye">
                 <VisibilityOffIcon

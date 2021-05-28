@@ -124,31 +124,31 @@
   display: inline;
   right: 0%;
 }
-.emt {
+.empty_spacing_nav {
   width: 100px;
   height: 10px;
   padding-right: 30rem;
   display: inline;
 }
 @media screen and (min-width: 600px) and (max-width: 1000px) {
-  .emt {
-    padding-right: 6rem;
+  .empty_spacing_nav {
+    padding-right: 15rem;
   }
 }
 @media screen and (min-width: 1001px) and (max-width: 1200px) {
-  .emt {
-    padding-right: 10rem;
+  .empty_spacing_nav {
+    padding-right: 25rem;
   }
 }
 @media screen and (min-width: 1201px) and (max-width: 1500px) {
-  .emt {
-    padding-right: 22rem;
+  .empty_spacing_nav {
+    padding-right: 35rem;
   }
 }
 
 @media screen and (min-width: 1501px) {
-  .emt {
-    padding-right: 30rem;
+  .empty_spacing_nav {
+    padding-right: 42rem;
   }
 }
 
