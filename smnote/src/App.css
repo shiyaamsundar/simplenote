@@ -362,10 +362,20 @@
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
-  margin-left: 750px;
   cursor: pointer;
+  padding-top: 10px;
 }
 
+@media screen and (min-width: 500px) and (max-width: 1200px) {
+  .main-save-btn {
+    margin-left: 500px;
+  }
+}
+@media screen and (min-width: 1300px) {
+  .main-save-btn {
+    margin-left: 800px;
+  }
+}
 .div-text {
   width: 350px;
   margin-left: 800px;

@@ -25,16 +25,16 @@ class Notescard extends Component {
   };
 
   render() {
-    let month = "";
-    let year = "";
-    let day = "";
+    let m_month = "";
+    let m_year = "";
+    let m_day = "";
     let ad = "";
     let firstline = "";
     let secondline = "";
-    let hr = "";
-    let mins = "";
-    let sec = "";
-    let zone = "AM";
+    let m_hr = "";
+    let m_mins = "";
+    let m_sec = "";
+    let m_zone = "AM";
 
     if (this.props.data) {
       firstline = this.props.data.data.substring(0, 30);
@@ -43,16 +43,16 @@ class Notescard extends Component {
 
       const modified = this.props.data.modified.substring(0, 19);
       const m = new Date(modified);
-      day = m.getDate();
-      month = m.getMonth();
-      year = m.getFullYear();
-      hr = m.getHours();
-      mins = m.getMinutes();
-      sec = m.getSeconds();
+      m_day = m.getDate();
+      m_month = m.getMonth();
+      m_year = m.getFullYear();
+      m_hr = m.getHours();
+      m_mins = m.getMinutes();
+      m_sec = m.getSeconds();
 
-      if (hr > 12) {
-        hr = hr - 12;
-        zone = "PM";
+      if (m_hr > 12) {
+        m_hr = m_hr - 12;
+        m_zone = "PM";
       }
 
       var days = [
@@ -78,7 +78,13 @@ class Notescard extends Component {
         "November",
         "December",
       ];
-      const date = new Date(year, month, day, hr, mins).toLocaleString();
+      const date = new Date(
+        m_year,
+        m_month,
+        m_day,
+        m_hr,
+        m_mins
+      ).toLocaleString();
       ad = date.substring(10, 25);
     }
 
@@ -104,7 +110,8 @@ class Notescard extends Component {
           <p className="card-p">{secondline}</p>
           <small className="note-meta ">
             Last Modify :-
-            {months[month]} , {year}, {day} ,{hr} :{mins}: {sec} {zone}
+            {months[m_month]} , {m_year}, {m_day} ,{m_hr} :{m_mins}: {m_sec}{" "}
+            {m_zone}
           </small>
         </div>
       </div>
