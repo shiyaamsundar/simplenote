@@ -1,132 +1,114 @@
-import React, { Component } from 'react'
-import { connect} from 'react-redux';
-import { savetags } from './actions/detailsaction';
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { savetags } from "./actions/detailsaction";
 
 class Tags extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-             tags: []
-        }
-        this.inputRef = React.createRef()
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      tags: [],
+    };
+    this.inputRef = React.createRef();
+  }
+
+  savechanges() {
+    this.props.save(this.props.active_id, this.state.tags);
+  }
+
+  removeTag = (i) => {
+    const tags = this.state.tags;
+    tags.splice(i, 1);
+    this.setState({
+      tags: tags,
+    });
+    this.savechanges(this.state.tags);
+  };
+
+  addTag = (e) => {
+    const tags = this.state.tags;
+    const value = e.target.value;
+    if (e.key === "Enter" && value) {
+      if (tags.find((tag) => tag.toLowerCase() === value.toLowerCase())) {
+        return alert("No duplicate value allowed");
+      }
+      tags.push(value);
+      this.setState({
+        tags,
+      });
+      this.inputRef.current.value = null;
+    } else if (e.key === "Backspace" && !value) {
+      this.removeTag(tags.length - 1);
     }
 
-    savechanges(){
-        this.props.save(this.props.active_id,this.state.tags)
-    }
+    this.savechanges();
+  };
 
-    removeTag = i => {
-        const tags = this.state.tags
-        tags.splice(i, 1)
+  componentDidUpdate(prevProps, activeProps) {
+    if (prevProps.note) {
+      if (window.id != prevProps.note._id) {
         this.setState({
-            tags: tags
-        })
-        this.savechanges(this.state.tags)
-
+          tags: this.props.note.tags,
+        });
+      }
     }
-
-    
-
-    addTag = e => {
-        const tags = this.state.tags
-        const value = e.target.value
-        if(e.key === "Enter" && value){
-
-            if(tags.find(tag => tag.toLowerCase() === value.toLowerCase())){
-                return alert("No duplicate value allowed")
-            }
-            tags.push(value)
-            this.setState({
-                tags
-            })
-            this.inputRef.current.value = null
-        } else if(e.key === "Backspace" && !value){
-            this.removeTag(tags.length - 1)
-        }
-
-        this.savechanges()
-
+    if (this.props.active_id && !prevProps.active_id) {
+      this.setState({
+        tags: this.props.note.tags,
+      });
     }
-
-
-    componentDidUpdate(prevProps,activeProps){
-        
-        if(prevProps.note)
-        {
-
-        if(window.id!=prevProps.note._id)
-        {
-            this.setState({
-                tags:this.props.note.tags
-            })
-
-        }
-        }
-        if(this.props.active_id && !prevProps.active_id){
-            this.setState({
-                tags:this.props.note.tags
-            })
-            
-        }
     //    else if(this.props && this.props.active_id && !prevProps.active_id)
     //     {
     //         this.setState({
     //             tags:this.props.note.tags
     //         })
     //     }
-        
+  }
 
-    }
+  render() {
+    const { tags } = this.state;
 
-    
+    console.log(tags);
 
-    render() {
-        const {tags} = this.state
-
-
-
-
-        return (
-            <>
- 
-                <div className="tags">
-                    <ul>
-                        { tags.map((tag, i) => {
-                            return (
-                                <li key={i}> {tag} <button onClick={() => this.removeTag(i)}>+</button> </li>
-                            )
-                        }) }
-                        <li className="input-tags">
-                            <input onKeyDown={this.addTag} type="text" size="4" ref={this.inputRef} />
-                        </li>
-                    </ul>
-                </div>
-            </>
-        )
-    }
+    return (
+      <>
+        <div className="tags">
+          <ul>
+            {tags.map((tag, i) => {
+              return (
+                <li key={i}>
+                  {" "}
+                  {tag} <button onClick={() => this.removeTag(i)}>+</button>{" "}
+                </li>
+              );
+            })}
+            <li className="input-tags">
+              <input
+                onKeyDown={this.addTag}
+                type="text"
+                size="4"
+                ref={this.inputRef}
+              />
+            </li>
+          </ul>
+        </div>
+      </>
+    );
+  }
 }
 
-const mapStateToProps=(state)=>{
+const mapStateToProps = (state) => {
+  return {
+    note: state.notes.note,
+    toggle: state.toggle,
+    active_id: state.notes.active_note_id,
+  };
+};
 
-      
-    return {
-           note:state.notes.note,
-           toggle:state.toggle,
-           active_id:state.notes.active_note_id
+const mapDispatchToprops = (dispatch) => {
+  return {
+    save: (id, data) => dispatch(savetags(id, data)),
+  };
+};
 
-    }
-}
-
-const mapDispatchToprops=dispatch=>{
-
-
-    return {
-        save:(id,data)=>dispatch(savetags(id,data)),
-
-    }  
-
-}
-
-export default connect(mapStateToProps,mapDispatchToprops)(Tags)
+export default connect(mapStateToProps, mapDispatchToprops)(Tags);

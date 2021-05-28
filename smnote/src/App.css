@@ -194,9 +194,7 @@
   margin-top: 3px;
   margin-bottom: 3px;
 }
-.bgbg {
-  background-color: yellow;
-}
+
 .note-meta {
   margin-top: 20px;
 }
@@ -317,12 +315,12 @@
   cursor: grab;
 }
 
-.body {
+.text-area-body {
   display: block;
   border: 1px solid #ddd;
   margin-bottom: 20px;
   width: 90%;
-  height: 250px;
+  height: 300px;
   padding: 10px;
   border: none;
   border-style: none;
