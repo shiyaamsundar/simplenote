@@ -1,6 +1,5 @@
 const initialState = {
   allnotes: [],
-  isLoading: true,
   searchnotes: [],
 };
 
@@ -10,12 +9,6 @@ const notesReducer = (state = initialState, action) => {
       return {
         ...state,
         allnotes: action.payload.allnotes.data,
-        isLoading: true,
-      };
-
-    case "LOADING_DETAILS":
-      return {
-        ...state,
         isLoading: true,
       };
 

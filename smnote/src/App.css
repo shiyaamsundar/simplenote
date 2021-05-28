@@ -191,8 +191,9 @@
   outline: none;
 }
 .card-p {
-  margin-top: 3px;
   margin-bottom: 3px;
+  font-size: 15px;
+  font-family: monospace;
 }
 
 .note-meta {
@@ -268,8 +269,13 @@
   width: 200px;
   padding-bottom: 30px;
   border-left: none;
+  border-right: none;
+  border-bottom: none;
 }
-
+.card-head {
+  font-weight: 500;
+  font-family: sans-serif;
+}
 .trash,
 .settings,
 .notes {
