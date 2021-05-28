@@ -50,7 +50,7 @@ class Sidebar extends Component {
 
 
         return (
-        <div className="sidebar">
+        <div className="simple_note_sidebar">
 
 
 
@@ -98,7 +98,6 @@ class Sidebar extends Component {
 
 const mapStateToProps=(state)=>{
 
-    console.log(state);
 
       
     return {

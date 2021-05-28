@@ -14,7 +14,7 @@ class Tags extends Component {
     }
 
     savechanges(){
-        this.props.save(this.state.tags)
+        this.props.save(this.props.active_id,this.state.tags)
     }
 
     removeTag = i => {
@@ -50,10 +50,12 @@ class Tags extends Component {
 
     }
 
-    componentDidUpdate(prevProps){
+
+    componentDidUpdate(prevProps,activeProps){
         
         if(prevProps.note)
         {
+
         if(window.id!=prevProps.note._id)
         {
             this.setState({
@@ -62,12 +64,18 @@ class Tags extends Component {
 
         }
         }
-       else if(this.props && window.id && !prevProps.note)
-        {
+        if(this.props.active_id && !prevProps.active_id){
             this.setState({
                 tags:this.props.note.tags
             })
+            
         }
+    //    else if(this.props && this.props.active_id && !prevProps.active_id)
+    //     {
+    //         this.setState({
+    //             tags:this.props.note.tags
+    //         })
+    //     }
         
 
     }
@@ -77,19 +85,20 @@ class Tags extends Component {
     render() {
         const {tags} = this.state
 
-        console.log(tags);
+
+
 
         return (
             <>
  
-                <div className="skill">
+                <div className="tags">
                     <ul>
                         { tags.map((tag, i) => {
                             return (
                                 <li key={i}> {tag} <button onClick={() => this.removeTag(i)}>+</button> </li>
                             )
                         }) }
-                        <li className="input-skill">
+                        <li className="input-tags">
                             <input onKeyDown={this.addTag} type="text" size="4" ref={this.inputRef} />
                         </li>
                     </ul>
@@ -104,7 +113,8 @@ const mapStateToProps=(state)=>{
       
     return {
            note:state.notes.note,
-           toggle:state.toggle
+           toggle:state.toggle,
+           active_id:state.notes.active_note_id
 
     }
 }
@@ -113,7 +123,7 @@ const mapDispatchToprops=dispatch=>{
 
 
     return {
-        save:(data)=>dispatch(savetags(window.id,data)),
+        save:(id,data)=>dispatch(savetags(id,data)),
 
     }  
 

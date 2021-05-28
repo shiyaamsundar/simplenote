@@ -38,9 +38,20 @@ export const loadsepcificnote=(id)=>async(dispatch)=>{
         }
     })
 
+    dispatch({
+        type:"ACTIVE_NOTE",
+        payload:{
+            data:note.data
+        }
+    })
 
 
 }
+
+
+
+
+
 
 export const addnote=()=>async(dispatch)=>{
     
@@ -49,7 +60,7 @@ export const addnote=()=>async(dispatch)=>{
             status:200
     })
 
-    console.log(note);
+
 
     dispatch({
         type:"ADD_NOTE",
@@ -57,13 +68,29 @@ export const addnote=()=>async(dispatch)=>{
             note:note.data
         }
     })
+
+
+
     const allnotes=await axios.get(`${url}/allnotesordered`)
     dispatch({
         type:"GET_ALL_NOTES",
+        
         payload:{
-            allnotes:allnotes.data
+            allnotes:allnotes.data,
+
         }
     })
+    dispatch({
+        type:"ACTIVE_NOTE",
+        
+        payload:{
+            data:note.data,
+
+        }
+    })
+
+
+
     }
 
 export const savenote=(id,data)=>async(dispatch)=>{
@@ -127,7 +154,7 @@ export const savetags=(id,tags)=>async(dispatch)=>{
 
 export const flip_pinned=(id,p)=>async(dispatch)=>{
 
-    console.log(id,p,"aaaaaaaaaaaaaaaaaaaaaaaa");
+
 
     const config = {
         headers: {
@@ -137,11 +164,12 @@ export const flip_pinned=(id,p)=>async(dispatch)=>{
     const pinned=!p
     const update=await axios.put(`${url}/updatenotes/${id}`,{pinned,config})
 
+    
 
     dispatch({
-        type:"SPECIFIC_NOTE",
+        type:"FLIP_PINNED",
         payload:{
-            note:update.data
+            note:update
         }
     })
 

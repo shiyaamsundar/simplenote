@@ -13,7 +13,7 @@ class Menu extends Component {
 
     render() {
 
-        console.log(this.props.note,this.props.toggle);
+
 
 
         return (
@@ -47,13 +47,6 @@ class Menu extends Component {
 
                     ):(null)}
 
-                    
-                    
-
-
-                    
-    
-                     
                     </div>     
             </div>
         )

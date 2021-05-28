@@ -30,10 +30,107 @@ class Navbar extends Component {
 
     componentDidMount(){
         this.props.loadnotes()
+        
     }
+
+    
+
+
 
 
     render() {
+
+        
+
+
+        let month=""
+        let year=""
+        let day=""
+        let ad=""
+
+        let hr=""
+        let mins=""
+        let sec=""
+        let zone="AM"
+        
+        let created=""
+        let c=""
+        let c_day=""
+        let c_month=""
+        let c_year=""
+        let c_hr=""
+        let c_mins=""
+        let c_sec=""
+        let c_zone="AM"
+
+        let words=0
+        let length=0
+        
+        
+            if(this.props.data)
+            {
+
+
+            
+             const modified=(this.props.data.modified).substring(0,19)
+            const m=new Date(modified)
+            day=m.getDate()
+            month=m.getMonth()
+             year=m.getFullYear()
+             hr=m.getHours()
+             mins=m.getMinutes()
+             sec=m.getSeconds()
+
+
+             if(hr>12){
+                 hr=hr-12
+                 zone="PM"
+
+             }
+
+            var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+            var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+            
+                  created=(this.props.data.modified)
+                 c=new Date(modified)
+                 c_day=c.getDate()
+                 c_month=c.getMonth()
+                 c_year=c.getFullYear()
+                 c_hr=c.getHours()
+                 c_mins=c.getMinutes()
+                 c_sec=m.getSeconds()
+
+                
+                   
+                if(c_hr>12)
+                {
+                    c_hr-=12
+                    c_zone="PM"
+
+
+                }
+
+                                function countWords(str) {
+                    if(window.id && str)
+                    {
+                    str = str.replace(/(^\s*)|(\s*$)/gi,"");
+                    str = str.replace(/[ ]{2,}/gi," ");
+                    str = str.replace(/\n /,"\n");
+                    return str.split(' ').length;
+                    }
+                    else{
+                        return 0
+                    }
+                }
+
+
+                words=countWords(this.props.data.data)
+                       length=this.props.data.data.length
+
+
+    
+            } 
+        
 
 
 
@@ -70,7 +167,7 @@ class Navbar extends Component {
         }
 
         return (
-        <div className="navbar">
+        <div className="simple_note_navbar">
 <div className="nav-row">
     
 
@@ -116,30 +213,28 @@ class Navbar extends Component {
                 <i class="fa fa-window-close close" aria-hidden="true" onClick={this.props.info}/>
                 <hr className="txt-hr"/>
                 <div className="window">
-                <p class Name="modified"> Modified<span className="modified">
+                <p class Name="modified"> Modified<span className="modified-span">
                     
-
-                {/* {months[month]} , {year},  {day}    ,{md_date} */}
-                May 18 2021 12.30 pm
+                 {month!=null?(months[month]):(null)}   ,  
+                 {year}, {day} ,{hr}:{mins}:{sec} {zone}
                 </span></p>
-                <p className="created"> Created<span className="created">
-                May 10 2021 11.30 pm
-                {/* {months[c_month]} , {c_year},  {c_day}    ,{cd_date} */}
+                <p className="created"> Created<span className="created-span">
+                {c_month!=null?(months[c_month]):(null)}   ,  
+                 {c_year}, {c_day} ,{c_hr}:{c_mins}:{c_sec} {c_zone}
+
                     </span></p>
                 <p className="words"> Words<span className="words">
-                    10
-                    {/* {words} */}
+                    {words}
                     </span></p>
                 <p className="char"> Characters<span className="char">
-                    132
-                    {/* {length} */}
+                    {length}
                     </span></p>
                 </div>
             
                 </div>
                 
         ):(<></>)}
-             <Mainbar data={this.props.toggler.preview}/>
+
 
 
 
@@ -154,7 +249,8 @@ const mapStateToProps=(state)=>{
       
     return {
            allnotes:state.notes,
-           toggler:state.toggle
+           toggler:state.toggle,
+           data:state.notes.note
 
 
     }

@@ -3,7 +3,7 @@
   padding: 0;
 }
 
-.sidebar {
+.simple_note_sidebar {
   width: 445px;
 
   min-height: 670px;
@@ -15,10 +15,8 @@
   border-right: 1px solid rgb(168, 168, 168);
 }
 
-.main {
+.simple-note-main {
   max-width: auto;
-
-  /* background-color: brown; */
   min-height: 670px;
   max-height: auto;
   position: relative;
@@ -27,7 +25,7 @@
   margin-bottom: 0;
 }
 
-.navbar {
+.simple_note_navbar {
   height: 50px;
 
   max-width: auto;
@@ -68,14 +66,6 @@
 .flip:hover {
   cursor: grab;
 }
-
-/* .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-    position: absolute;
-    opacity: 0;
-  } */
 
 .eye,
 .info,
@@ -132,12 +122,34 @@
 .more,
 .check {
   display: inline;
+  right: 0%;
 }
 .emt {
   width: 100px;
   height: 10px;
-  padding-right: 750px;
+  padding-right: 30rem;
   display: inline;
+}
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+  .emt {
+    padding-right: 6rem;
+  }
+}
+@media screen and (min-width: 1001px) and (max-width: 1200px) {
+  .emt {
+    padding-right: 10rem;
+  }
+}
+@media screen and (min-width: 1201px) and (max-width: 1500px) {
+  .emt {
+    padding-right: 22rem;
+  }
+}
+
+@media screen and (min-width: 1501px) {
+  .emt {
+    padding-right: 30rem;
+  }
 }
 
 .post {
@@ -230,20 +242,14 @@
 .menu {
   padding-left: 10px;
   padding-top: 30px;
-  display: flexbox;
   border-radius: 3px;
   width: 220px;
-  min-height: 700px;
-  max-height: max-content;
+  height: 100%;
   box-shadow: 5px 4px 8px 5px rgba(20, 20, 20, 0.2);
-  transition: 0.3s;
   z-index: 1;
   background-color: rgb(255, 255, 255);
   margin-top: 50px;
   position: absolute;
-  transform: 0.5;
-  animation: ease-out;
-  animation-duration: 5sec;
 }
 
 .sidebar .menu {
@@ -324,7 +330,7 @@
   overflow: auto;
 }
 
-.spc {
+.empty-spacing {
   padding-top: 50px;
 }
 
@@ -338,11 +344,10 @@
   min-height: 500px;
   max-height: max-content;
   margin-top: 20px;
-  /* border: 1px solid black; */
   padding: 10px;
 }
 
-.btn {
+.main-save-btn {
   margin-bottom: 15px;
   border: none;
   background-color: #008cba;
@@ -400,12 +405,12 @@
   margin-top: 15px;
 }
 
-.modified span {
-  margin-left: 100px;
+.modified-span {
+  margin-left: 20px;
 }
 
-.created span {
-  margin-left: 55px;
+.created-span {
+  margin-left: 20px;
 }
 
 .char span,
@@ -414,7 +419,7 @@
 }
 
 .words {
-  padding-right: 80px;
+  padding-right: 70px;
 }
 
 .words span {
@@ -425,18 +430,18 @@
   padding-right: 50px;
 }
 
-.skill {
+.tags {
   background: #ffffff;
   border: 1px solid #d6d6d6;
   border-radius: 2px;
 }
 
-.skill input {
+.tags input {
   border: none;
   width: 100%;
   min-width: 50px;
 }
-.skill input:focus {
+.tags input:focus {
   outline: none;
 }
 ul {
@@ -470,7 +475,7 @@ ul li button {
   margin-left: 8px;
   transform: rotate(45deg);
 }
-ul .input-skill {
+ul .input-tags {
   background: none;
   flex-grow: 1;
 }

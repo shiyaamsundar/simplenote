@@ -12,7 +12,7 @@ import { SettingsEthernet } from '@material-ui/icons';
     constructor(props) {
         super(props)
         {
-            console.log("const",);
+
             this.state={
                 data:"",
             
@@ -47,7 +47,7 @@ import { SettingsEthernet } from '@material-ui/icons';
 
 
     handlechange=(e)=>{
-        console.log(e.target.value);
+
         
         this.setState({
             data:e.target.value
@@ -56,16 +56,15 @@ import { SettingsEthernet } from '@material-ui/icons';
 
     render() {
        
-        // console.log(window.id,this.props.note._id,"id");
 
 
     
         return (
-            <div className="main">
+            <div className="simple-note-main">
     
                 {!this.props.toggle.preview?(
-                     <div className="container">
-                     <div className="spc"></div>
+                     <div className="main-container">
+                     <div className="empty-spacing"></div>
                  <textarea className="body" placeholder="write your note" id="data" value={this.state.data} onChange={this.handlechange}  style={{border: "none"}}>
                      
                       
@@ -73,14 +72,14 @@ import { SettingsEthernet } from '@material-ui/icons';
                  </textarea>
 
                  <Tags/>
-                 <button className="btn" onClick={()=>this.props.save(this.state.data)}>save</button>
+                 <button className="main-save-btn" onClick={()=>this.props.save(this.props.active_id,this.state.data)}>save</button>
                  
                  </div>
-                ):(<div className="spc">
+                ):(<div className="empty-spacing">
     
                     <h3>Markdown Preview:-</h3>
                     <br/><br/>
-                    <ReactMarkdown className="mm">{this.state.data}</ReactMarkdown>
+                    <ReactMarkdown >{this.state.data}</ReactMarkdown>
             
                 </div>)}
     
@@ -103,7 +102,8 @@ const mapStateToProps=(state)=>{
       
     return {
            note:state.notes.note,
-           toggle:state.toggle
+           toggle:state.toggle,
+           active_id:state.notes.active_note_id
 
     }
 }
@@ -112,7 +112,7 @@ const mapDispatchToprops=dispatch=>{
 
 
     return {
-        save:(data)=>dispatch(savenote(window.id,data)),
+        save:(id,data)=>dispatch(savenote(id,data)),
 
     }  
 

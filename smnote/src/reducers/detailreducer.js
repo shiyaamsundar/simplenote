@@ -1,7 +1,7 @@
 const initialState={
     allnotes:[],
     isLoading:true,
-    searchnotes:[]
+    searchnotes:[],
 }
 
 
@@ -48,6 +48,12 @@ const notesReducer=(state=initialState,action)=>{
                     ...state,
                     note:action.payload.note.data
                 }  
+            case "ACTIVE_NOTE":{
+                return {
+                    ...state,
+                    active_note_id:action.payload.data.data._id
+                }
+            }
            
 
             default:
