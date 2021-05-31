@@ -17,12 +17,13 @@ class Mainbar extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.note) {
-      if (window.id != prevProps.note._id) {
+      if (this.props.active_id != prevProps.note._id) {
         this.setState({
           data: this.props.note.data,
         });
       }
-    } else if (this.props && window.id && !prevProps.note) {
+    }
+    if (this.props.active_id && !prevProps.active_id) {
       this.setState({
         data: this.props.note.data,
       });
@@ -50,7 +51,6 @@ class Mainbar extends Component {
               style={{ border: "none" }}
             ></textarea>
 
-            <Tags />
             <button
               className="main-save-btn"
               onClick={() =>
@@ -69,9 +69,7 @@ class Mainbar extends Component {
           </div>
         )}
 
-        <div className="container">
-          <h3></h3>
-        </div>
+        <Tags />
       </div>
     );
   }

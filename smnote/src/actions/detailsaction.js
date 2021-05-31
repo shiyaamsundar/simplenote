@@ -26,6 +26,7 @@ export const loadsearchnotes = (data) => async (dispatch) => {
 
 export const loadsepcificnote = (id) => async (dispatch) => {
   const note = await axios.get(`${url}/note/${id}`);
+
   dispatch({
     type: "SPECIFIC_NOTE",
     payload: {
@@ -33,12 +34,12 @@ export const loadsepcificnote = (id) => async (dispatch) => {
     },
   });
 
-  dispatch({
-    type: "ACTIVE_NOTE",
-    payload: {
-      data: note.data,
-    },
-  });
+  // dispatch({
+  //   type: "ACTIVE_NOTE",
+  //   payload: {
+  //     data: note.data.data._id,
+  //   },
+  // });
 };
 
 export const addnote = () => async (dispatch) => {
@@ -54,19 +55,19 @@ export const addnote = () => async (dispatch) => {
     },
   });
 
+  // dispatch({
+  //   type: "ACTIVE_NOTE",
+  //   payload: {
+  //     data: note.data._id,
+  //   },
+  // });
+
   const allnotes = await axios.get(`${url}/allnotesordered`);
   dispatch({
     type: "GET_ALL_NOTES",
 
     payload: {
       allnotes: allnotes.data,
-    },
-  });
-  dispatch({
-    type: "ACTIVE_NOTE",
-
-    payload: {
-      data: note.data,
     },
   });
 };

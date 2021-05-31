@@ -26,10 +26,6 @@ class Sidebar extends Component {
     this.props.searchnotes(this.state.search);
   };
 
-  componentDidMount() {
-    this.props.loadnotes();
-  }
-
   componentDidUpdate() {
     console.log("did update");
   }
@@ -42,7 +38,7 @@ class Sidebar extends Component {
           <input
             type="text"
             placeholder="search notes and tags"
-            className="search-p"
+            className="search-input-txt"
             value={this.state.search}
             onChange={this.handlechange}
           ></input>
@@ -61,6 +57,7 @@ class Sidebar extends Component {
               })}
             </>
           )}
+          <div className="side-bar-bottom-spacing"></div>
         </div>
       </div>
     );

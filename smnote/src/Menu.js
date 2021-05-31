@@ -25,20 +25,20 @@ class Menu extends Component {
         <hr className="menu-hr" />
 
         <div className="menu-tags">
-          <p className="m-tags-txt">
+          <p className="menu-tags-txt">
             Tags <span className="tags-edit">Edit</span>
           </p>
-
-          {this.props.note
-            ? this.props.note.tags.map((data, i) => {
+          <div className="menu-tag-list">
+            {this.props.note &&
+              this.props.note.tags.map((data, i) => {
                 return (
-                  <div inde>
+                  <div index={i}>
                     <p className="menu-txt ">{data}</p>
                     <hr className="menu-hr" />
                   </div>
                 );
-              })
-            : null}
+              })}
+          </div>
         </div>
       </div>
     );

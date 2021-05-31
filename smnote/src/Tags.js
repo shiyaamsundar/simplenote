@@ -44,9 +44,9 @@ class Tags extends Component {
     this.savechanges();
   };
 
-  componentDidUpdate(prevProps, activeProps) {
+  componentDidUpdate(prevProps) {
     if (prevProps.note) {
-      if (window.id != prevProps.note._id) {
+      if (this.props.active_id != prevProps.note._id) {
         this.setState({
           tags: this.props.note.tags,
         });
@@ -57,22 +57,15 @@ class Tags extends Component {
         tags: this.props.note.tags,
       });
     }
-    //    else if(this.props && this.props.active_id && !prevProps.active_id)
-    //     {
-    //         this.setState({
-    //             tags:this.props.note.tags
-    //         })
-    //     }
   }
 
   render() {
     const { tags } = this.state;
 
-    console.log(tags);
-
     return (
       <>
         <div className="tags">
+          <span className="tags-heading">Tags:-</span>
           <ul>
             {tags.map((tag, i) => {
               return (
@@ -82,7 +75,7 @@ class Tags extends Component {
                 </li>
               );
             })}
-            <li className="input-tags">
+            <li className="tags-input-txt">
               <input
                 onKeyDown={this.addTag}
                 type="text"

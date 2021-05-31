@@ -16,11 +16,14 @@ const notesReducer = (state = initialState, action) => {
       return {
         ...state,
         note: action.payload.note.data,
+        active_note_id: action.payload.note.data._id,
       };
 
     case "ADD_NOTE":
       return {
         ...state,
+        active_note_id: action.payload.note.data._id,
+        note: action.payload.note.data,
       };
     case "ON_SAVE":
       return {
@@ -40,7 +43,7 @@ const notesReducer = (state = initialState, action) => {
     case "ACTIVE_NOTE": {
       return {
         ...state,
-        active_note_id: action.payload.data.data._id,
+        active_note_id: action.payload.data,
       };
     }
 
