@@ -119,7 +119,7 @@ class Navbar extends Component {
         </div>
 
         {this.props.toggler.info ? (
-          <div className="div-text">
+          <div className="info-container">
             <span className="info-heading">Documents</span>
             <i
               class="fa fa-window-close close"
