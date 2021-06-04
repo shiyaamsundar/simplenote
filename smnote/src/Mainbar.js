@@ -41,9 +41,8 @@ class Mainbar extends Component {
       <div className="simple-note-main">
         {!this.props.toggle.preview ? (
           <div className="main-container">
-            <div className="empty-spacing"></div>
             <textarea
-              className="text-area-body"
+              className="text-area-body_main"
               placeholder="write your note"
               id="data"
               value={this.state.data}
@@ -61,7 +60,7 @@ class Mainbar extends Component {
             </button>
           </div>
         ) : (
-          <div className="empty-spacing">
+          <div className="markdown-preview-main">
             <h3>Markdown Preview:-</h3>
             <br />
             <br />

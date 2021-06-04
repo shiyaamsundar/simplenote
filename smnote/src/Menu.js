@@ -12,17 +12,15 @@ class Menu extends Component {
         <p className="menu-txt ">
           All notes <NotesOutlinedIcon className="menu-icon" />
         </p>
-        <hr className="menu-hr" />
+
         <p className="menu-txt trash">
           Trash
           <DeleteForeverOutlinedIcon className="menu-icon trash-icon" />
         </p>
-        <hr className="menu-hr" />
         <p className="menu-txt settings">
           Settings
           <SettingsOutlinedIcon className="menu-icon settings-icon" />
         </p>
-        <hr className="menu-hr" />
 
         <div className="menu-tags">
           <p className="menu-tags-txt">
@@ -34,7 +32,6 @@ class Menu extends Component {
                 return (
                   <div index={i}>
                     <p className="menu-txt ">{data}</p>
-                    <hr className="menu-hr" />
                   </div>
                 );
               })}
