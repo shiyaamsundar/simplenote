@@ -17,13 +17,13 @@ class Mainbar extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.note) {
-      if (this.props.active_id != prevProps.note._id) {
+      if (this.props.activeId != prevProps.note._id) {
         this.setState({
           data: this.props.note.data,
         });
       }
     }
-    if (this.props.active_id && !prevProps.active_id) {
+    if (this.props.activeId && !prevProps.activeId) {
       this.setState({
         data: this.props.note.data,
       });
@@ -54,7 +54,7 @@ class Mainbar extends Component {
             <button
               className="main-save-btn"
               onClick={() =>
-                this.props.save(this.props.active_id, this.state.data)
+                this.props.save(this.props.activeId, this.state.data)
               }
             >
               save
@@ -79,7 +79,7 @@ const mapStateToProps = (state) => {
   return {
     note: state.notes.note,
     toggle: state.toggle,
-    active_id: state.notes.active_note_id,
+    activeId: state.notes.active_note_id,
   };
 };
 

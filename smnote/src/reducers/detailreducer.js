@@ -1,6 +1,5 @@
 const initialState = {
   allnotes: [],
-  searchnotes: [],
 };
 
 const notesReducer = (state = initialState, action) => {
@@ -9,7 +8,6 @@ const notesReducer = (state = initialState, action) => {
       return {
         ...state,
         allnotes: action.payload.allnotes.data,
-        isLoading: true,
       };
 
     case "SPECIFIC_NOTE":

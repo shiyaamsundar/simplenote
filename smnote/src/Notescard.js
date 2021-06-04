@@ -35,7 +35,7 @@ class Notescard extends Component {
     return (
       <div
         className={`notes ${
-          this.props.active_id === this.props.data._id && "active"
+          this.props.activeId === this.props.data._id && "active"
         }`}
         onClick={this.setactive.bind(this)}
       >
@@ -64,7 +64,7 @@ class Notescard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    active_id: state.notes.active_note_id,
+    activeId: state.notes.active_note_id,
   };
 };
 

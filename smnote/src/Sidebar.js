@@ -19,9 +19,8 @@ class Sidebar extends Component {
     }
   }
 
-  setSearchlist = (e) => {
+  setSearchList = (e) => {
     let s = this.props.allnotes.allnotes.filter((data) => {
-      // return data.tags.indexOf(this.state.search) >= 0;
       let j = 0;
       for (let i = 0; i < data.tags.length; i++) {
         j = 0;
@@ -39,7 +38,7 @@ class Sidebar extends Component {
     this.setState({
       search: e.target.value,
     });
-    this.setSearchlist(e.target.value);
+    this.setSearchList(e.target.value);
   };
 
   render() {
