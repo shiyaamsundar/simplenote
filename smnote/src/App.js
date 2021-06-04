@@ -11,8 +11,16 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Sidebar />
-      <Mainbar />
+      <div className="main">
+        <div className="col-1">
+          <Sidebar />
+        </div>
+        <div className="col-2">
+          <Mainbar />
+        </div>
+      </div>
+      {/* <Sidebar />
+      <Mainbar /> */}
     </div>
   );
 }

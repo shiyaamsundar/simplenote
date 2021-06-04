@@ -14,21 +14,33 @@ class Sidebar extends Component {
     {
       this.state = {
         search: "",
+        searchlist: {},
       };
     }
   }
+
+  setSearchlist = (e) => {
+    let s = this.props.allnotes.allnotes.filter((data) => {
+      // return data.tags.indexOf(this.state.search) >= 0;
+      let j = 0;
+      for (let i = 0; i < data.tags.length; i++) {
+        j = 0;
+        if (data.tags[i].includes(e)) {
+          return true;
+        }
+      }
+    });
+    this.setState({
+      searchlist: s,
+    });
+  };
 
   handlechange = (e) => {
     this.setState({
       search: e.target.value,
     });
-
-    this.props.searchnotes(this.state.search);
+    this.setSearchlist(e.target.value);
   };
-
-  componentDidUpdate() {
-    console.log("did update");
-  }
 
   render() {
     return (
@@ -52,7 +64,7 @@ class Sidebar extends Component {
             </>
           ) : (
             <>
-              {this.props.searchednotes.map((data, i) => {
+              {this.state.searchlist.map((data, i) => {
                 return <Notescard index={i} data={data} />;
               })}
             </>

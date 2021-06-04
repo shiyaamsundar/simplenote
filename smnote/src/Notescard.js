@@ -23,13 +23,13 @@ class Notescard extends Component {
   render() {
     let modified_date = findtime(this.props.data.modified);
 
-    let firstline = "";
-    let secondline = "";
+    let firstLine = "";
+    let secondLine = "";
 
     if (this.props.data) {
-      firstline = this.props.data.data.substring(0, 30);
+      firstLine = this.props.data.data.substring(0, 30);
 
-      secondline = this.props.data.data.substring(20, 40);
+      secondLine = this.props.data.data.substring(20, 40);
     }
 
     return (
@@ -49,9 +49,9 @@ class Notescard extends Component {
         )}
 
         <div className="card">
-          <h3 className="card-firstline">{firstline}</h3>
+          <h3 className="card-firstline">{firstLine}</h3>
           <br />
-          <p className="card-secondline">{secondline}</p>
+          <p className="card-secondline">{secondLine}</p>
           <small className="note-meta ">
             Last Modify :-
             {modified_date}

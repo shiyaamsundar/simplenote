@@ -31,94 +31,96 @@ class Navbar extends Component {
   render() {
     let words = 0;
     let length = 0;
-    let created_at = "";
-    let modified_at = "";
+    let createdAt = "";
+    let modifiedAt = "";
 
-    if (this.props.data) {
+    if (this.props.data && this.props.toggler.info) {
       words = countWords(this.props.data.data);
 
       length = this.props.data.data.length;
-      created_at = findtime(this.props.data.created);
-      modified_at = findtime(this.props.data.modified);
+      createdAt = findtime(this.props.data.created);
+      modifiedAt = findtime(this.props.data.modified);
     }
 
     return (
-      <div className="flexbox-container simple_note_navbar">
-        <div className="flexbox-container flexbox-item-1">
-          <ArrowForwardIosIcon
-            className="nav-icon arrow"
-            fontSize="medium"
-            onClick={this.props.arrow}
-          />
-          <div className="flexbox-item flex-1 nav-notes">All notes</div>
-          <PostAddIcon
-            fontSize="medium"
-            className="nav-icon post"
-            onClick={this.props.addnote}
-          />
-        </div>
-        <div className="line"></div>
-        {this.props.toggler.arrow && <Menu />}
-        <div className="flexbox-container-1 flexbox-item-2">
-          <div className="eye flexbox-item">
-            <FlipOutlinedIcon
-              className="nav-icon flip"
+      <div>
+        <div className="nav-bar">
+          <div className="flex-items sidenav-bar">
+            <ArrowForwardIosIcon
+              className="nav-icon flex-items arrow"
               fontSize="medium"
-              onClick={this.props.flip}
+              onClick={this.props.arrow}
             />
-            <span className="tooltip">toggle</span>
+            <div className="flex-items nav-notes">All notes</div>
+            <PostAddIcon
+              fontSize="medium"
+              className="nav-icon post flex-items"
+              onClick={this.props.addnote}
+            />
           </div>
-        </div>
-        <div className="flexbox-container-2 flexbox-item-3">
-          {this.props.toggler.preview ? (
-            <div className="eye">
-              <VisibilityOffIcon
-                className="nav-icon"
-                fontSize="medium"
-                onClick={this.props.preview}
-              />
-
-              <span className="tooltip">preview</span>
+          {this.props.toggler.arrow && <Menu />}
+          <div className="flex-items mainnav-bar">
+            <div className="row1">
+              <div className="eye flexbox-item">
+                <FlipOutlinedIcon
+                  className="nav-icon"
+                  fontSize="medium"
+                  onClick={this.props.flip}
+                />
+                <span className="tooltip">toggle</span>
+              </div>
             </div>
-          ) : (
-            <div className="eye">
-              <VisibilityIcon
-                className="nav-icon eye"
-                fontSize="medium"
-                onClick={this.props.preview}
-              />
-              <span className="tooltip">preview</span>
+            <div className="row2">
+              {this.props.toggler.preview ? (
+                <div className="eye">
+                  <VisibilityOffIcon
+                    className="nav-icon"
+                    fontSize="medium"
+                    onClick={this.props.preview}
+                  />
+
+                  <span className="tooltip">preview</span>
+                </div>
+              ) : (
+                <div className="eye">
+                  <VisibilityIcon
+                    className="nav-icon eye"
+                    fontSize="medium"
+                    onClick={this.props.preview}
+                  />
+                  <span className="tooltip">preview</span>
+                </div>
+              )}
+              <div className="info">
+                <InfoIcon
+                  className="nav-icon info"
+                  fontSize="medium"
+                  onClick={this.props.info}
+                />
+                <span className="tooltip">info</span>
+              </div>
+
+              <div className="check">
+                <PlaylistAddCheckIcon
+                  className="nav-icon check"
+                  fontSize="medium"
+                  onClick={this.props.check}
+                />
+                <span className="tooltip">check</span>
+              </div>
+              <div className="more">
+                <MoreVertIcon
+                  className="nav-icon more"
+                  fontSize="medium"
+                  onClick={this.props.more}
+                />
+                <span className="tooltip">more</span>
+              </div>
             </div>
-          )}
-
-          <div className="info">
-            <InfoIcon
-              className="nav-icon info"
-              fontSize="medium"
-              onClick={this.props.info}
-            />
-            <span className="tooltip">info</span>
-          </div>
-
-          <div className="check">
-            <PlaylistAddCheckIcon
-              className="nav-icon check"
-              fontSize="medium"
-              onClick={this.props.check}
-            />
-            <span className="tooltip">check</span>
-          </div>
-          <div className="more">
-            <MoreVertIcon
-              className="nav-icon more"
-              fontSize="medium"
-              onClick={this.props.more}
-            />
-            <span className="tooltip">more</span>
           </div>
         </div>
 
-        {this.props.toggler.info ? (
+        {this.props.toggler.info && (
           <div className="info-container">
             <span className="info-heading">Documents</span>
             <i
@@ -132,13 +134,13 @@ class Navbar extends Component {
                 {" "}
                 Modified
                 <span className="modified-span"></span>
-                {modified_at}
+                {modifiedAt}
               </p>
               <p className="created">
                 {" "}
                 Created
                 <span className="created-span"></span>
-                {created_at}
+                {createdAt}
               </p>
               <p className="words">
                 {" "}
@@ -150,8 +152,6 @@ class Navbar extends Component {
               </p>
             </div>
           </div>
-        ) : (
-          <></>
         )}
       </div>
     );
